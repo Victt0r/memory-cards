@@ -52,3 +52,4 @@ no.onclick = function() {
   word.innerText = words[number][ru_en]+" = "+lekalo
   document.body.style.backgroundColor = "red"
 }
+// TODO не показывать подряд одно слово, ошибся/попал на каждом слове, серия без ошибки.
