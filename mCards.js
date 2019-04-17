@@ -43,7 +43,7 @@ yes.onclick = function() {
   word.innerText = words[number][ru_en]+" = "+lekalo
   document.body.style.backgroundColor = "green"
 
-  window.setTimeout(nextWord, [1200])
+  window.setTimeout(nextWord, [1500])
 }
 no.onclick = function() {
   if (words[number][0] == words[number][ru_en]) {lekalo = words[number][1]}
