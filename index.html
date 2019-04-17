@@ -1,0 +1,47 @@
+<head>
+  <style>
+    body, input, button {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 24pt;
+      text-align: center;
+    }
+    body {
+      display: flex;
+    }
+    .center {
+      width: 370px; /* Ширина элемента в пикселах */
+      padding: 10px; /* Поля вокруг текста */
+      margin: auto; 
+      display: grid;
+      grid-template-columns: 50% 50%;
+      gap: 5px;
+
+    }
+    #word, input {
+      grid-column-start: 1;
+      grid-column-end: 3
+    }
+    #right {
+      position:fixed;
+      right: 21px;
+      top: 10;
+    }
+    #wrong {
+      position:fixed;
+      left: 21px;
+      top: 10;
+    }
+
+  </style>
+</head>
+<body>
+    <span id=right></span>
+    <span id=wrong></span>
+    <div  class="center">
+        <div id=word></div> 
+        <input type="text" id="input_form">
+        <button id="yes">помню</button>
+        <button id="no">не помню</button>
+    </div>
+    <script  src="mCards.js"></script>
+</body>
