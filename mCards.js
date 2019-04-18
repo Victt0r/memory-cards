@@ -9,12 +9,12 @@ words = [['what', 'что'],
          ['how', 'как']]
 
 function nextWord() {
-  number = Math.floor(Math.random() * 8)
+  number = Math.floor(Math.random() * words.length)
   ru_en = Math.floor(Math.random() * 2)
-  if (splicedWord) splicedWord = words.splice(number, 1, splicedWord)[0]
-  else splicedWord = words.splice(number, 1)[0]
-  word.innerText = splicedWord[ru_en]
   
+  splicedWord = splicedWord ? 
+    words.splice(number, 1, splicedWord)[0] : words.splice(number, 1)[0]
+  word.innerText = splicedWord[ru_en]
   input_form.value = ""
 }
 splicedWord = false
@@ -27,11 +27,13 @@ function inputHandler() {
   lekalo = splicedWord[1-ru_en]
 
   if (text == lekalo) {
+    splicedWord.hit = splicedWord.hit ? splicedWord.hit+1 : 1
     document.body.style.backgroundColor = "green";  
     window.setTimeout(nextWord, [1200]);
     right.innerText = ++counter_right
   }
   else {
+    splicedWord.miss = splicedWord.miss ? splicedWord.miss+1 : 1
     document.body.style.backgroundColor = "red"; 
     word.innerText = splicedWord[ru_en]+" = "+lekalo; 
     wrong.innerText = ++counter_wrong
@@ -49,5 +51,6 @@ no.onclick = function() {
   word.innerText = splicedWord[ru_en]+" = "+splicedWord[1-ru_en]
   document.body.style.backgroundColor = "red"
 }
-// TODO не показывать подряд одно слово, ошибся/попал на каждом слове, серия без ошибки.
+// TODO серия без ошибки счетчик хит/мисс рядом сословом. 
 // TODO качество UX 
+// TODO GIT
