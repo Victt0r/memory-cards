@@ -24,6 +24,7 @@ function nextWord() {
 splicedWord = false
 counter_right = 0
 counter_wrong = 0
+counter_series = 0
 nextWord()
 function inputHandler() {
   text = input_form.value
@@ -35,6 +36,7 @@ function inputHandler() {
     document.body.style.backgroundColor = "green";  
     window.setTimeout(nextWord, [1200]);
     right.innerText = ++counter_right
+    series.innerText = ++counter_series
   }
   else {
     splicedWord.miss = splicedWord.miss ? splicedWord.miss+1 : 1
@@ -42,7 +44,7 @@ function inputHandler() {
     word.innerText = splicedWord[ru_en]+" = "+lekalo; 
     wrong.innerText = ++counter_wrong
     input_form.value = ""
-
+    series.innerText = counter_series = 0
   }
   hitMiss.innerHTML = `<span id=hit>${splicedWord.hit}</span> :
   <span id=miss>${splicedWord.miss}</span>`
@@ -58,6 +60,7 @@ no.onclick = function() {
   word.innerText = splicedWord[ru_en]+" = "+splicedWord[1-ru_en]
   document.body.style.backgroundColor = "red"
 }
-// TODO серия без ошибки счетчик хит/мисс рядом сословом. 
+
 // TODO качество UX 
+
 // TODO GIT
