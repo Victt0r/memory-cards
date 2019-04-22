@@ -1,11 +1,11 @@
 words = [['what', 'что'], 
-         ['when', 'когда'], 
-         ['where', 'где'], 
-         ['why', 'почему'],
-         ['which', 'который'], 
-         ['who', 'кто'], 
-         ['whose', 'чей'], 
-         ['colon', 'двоеточие'], 
+        //  ['when', 'когда'], 
+        //  ['where', 'где'], 
+        //  ['why', 'почему'],
+        //  ['which', 'который'], 
+        //  ['who', 'кто'], 
+        //  ['whose', 'чей'], 
+        //  ['colon', 'двоеточие'], 
          ['how', 'как']]
 
 function nextWord() {
@@ -14,7 +14,11 @@ function nextWord() {
   
   splicedWord = splicedWord ? 
     words.splice(number, 1, splicedWord)[0] : words.splice(number, 1)[0]
+  if (!splicedWord.hit) {splicedWord.hit = 0}
+  if (!splicedWord.miss) {splicedWord.miss = 0}
   word.innerText = splicedWord[ru_en]
+  hitMiss.innerHTML = `<span id=hit>${splicedWord.hit}</span> :
+  <span id=miss>${splicedWord.miss}</span>`
   input_form.value = ""
 }
 splicedWord = false
@@ -37,8 +41,11 @@ function inputHandler() {
     document.body.style.backgroundColor = "red"; 
     word.innerText = splicedWord[ru_en]+" = "+lekalo; 
     wrong.innerText = ++counter_wrong
-  }
+    input_form.value = ""
 
+  }
+  hitMiss.innerHTML = `<span id=hit>${splicedWord.hit}</span> :
+  <span id=miss>${splicedWord.miss}</span>`
 }
 input_form.onchange = inputHandler
 

@@ -11,37 +11,43 @@
       color: white;
     }
     .center {
-      width: 370px; /* Ширина элемента в пикселах */
-      padding: 10px; /* Поля вокруг текста */
+      width: 370px;
+      padding: 10px;
       margin: auto; 
       display: grid;
       grid-template-columns: 50% 50%;
       gap: 5px;
 
     }
-    #word, input {
+    #word, input, #hitMiss {
       grid-column-start: 1;
       grid-column-end: 3
     }
     #right {
       position:fixed;
-      right: 21px;
-      top: 10;
-      font-size: 44pt;
-    }
-    #wrong {
-      position:fixed;
       left: 21px;
       top: 10;
       font-size: 44pt;
+      color:#7ae27a
     }
+    #wrong {
+      position:fixed;
+      right: 21px;
+      top: 10;
+      font-size: 44pt;
+      color:#ff7a7a
+    }
+    #hit {color:#7ae27a}
+    #miss {color:#ff7a7a}
 
   </style>
 </head>
 <body>
     <span id=right></span>
     <span id=wrong></span>
+    
     <div  class="center">
+        <div id=hitMiss></div> 
         <div id=word></div> 
         <input type="text" id="input_form">
         <button id="yes">помню</button>
