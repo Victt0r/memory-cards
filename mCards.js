@@ -1,6 +1,10 @@
 words = [['what', 'что'], 
         //  ['when', 'когда'], 
+        //  ['measure', 'измерить'], 
         //  ['where', 'где'], 
+        //  ['will', 'будет'], 
+        //  ['can ', 'могу'], 
+        //  ['so', 'так'], 
         //  ['why', 'почему'],
         //  ['which', 'который'], 
         //  ['who', 'кто'], 
@@ -22,9 +26,10 @@ function nextWord() {
   input_form.value = ""
 }
 splicedWord = false
-counter_right = 0
-counter_wrong = 0
-counter_series = 0
+right.innerText = counter_right = +localStorage.counter_right
+wrong.innerText = counter_wrong = +localStorage.counter_wrong
+series.innerText = counter_series = +localStorage.counter_series
+
 nextWord()
 function inputHandler() {
   text = input_form.value
@@ -36,15 +41,19 @@ function inputHandler() {
     document.body.style.backgroundColor = "green";  
     window.setTimeout(nextWord, [1200]);
     right.innerText = ++counter_right
+    localStorage.counter_right = counter_right
     series.innerText = ++counter_series
+    localStorage.counter_series = counter_series
+
   }
   else {
     splicedWord.miss = splicedWord.miss ? splicedWord.miss+1 : 1
     document.body.style.backgroundColor = "red"; 
     word.innerText = splicedWord[ru_en]+" = "+lekalo; 
     wrong.innerText = ++counter_wrong
+    localStorage.counter_wrong = counter_wrong
     input_form.value = ""
-    series.innerText = counter_series = 0
+    localStorage.counter_series = series.innerText = counter_series = 0
   }
   hitMiss.innerHTML = `<span id=hit>${splicedWord.hit}</span> :
   <span id=miss>${splicedWord.miss}</span>`
@@ -61,6 +70,4 @@ no.onclick = function() {
   document.body.style.backgroundColor = "red"
 }
 
-// TODO качество UX 
-
-// TODO GIT
+// TODO запись счетчиков в LocalStorage
