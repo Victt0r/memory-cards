@@ -26,14 +26,16 @@ function nextWord() {
   input_form.value = ""
 }
 splicedWord = false
-right.innerText = counter_right = +localStorage.counter_right
-wrong.innerText = counter_wrong = +localStorage.counter_wrong
-series.innerText = counter_series = +localStorage.counter_series
+right.innerText = counter_right = 
+  localStorage.counter_right ? +localStorage.counter_right : 0
+wrong.innerText = counter_wrong = 
+  localStorage.counter_wrong ? +localStorage.counter_wrong : 0
+series.innerText = counter_series = 
+  localStorage.counter_series? +localStorage.counter_series : 0
 
 nextWord()
 function inputHandler() {
   text = input_form.value
-  console.log(text)
   lekalo = splicedWord[1-ru_en]
 
   if (text == lekalo) {
