@@ -1,14 +1,14 @@
 words = [['what', 'что'], 
-         ['when', 'когда'], 
+        //  ['when', 'когда'], 
          ['measure', 'измерить'], 
-         ['where', 'где'], 
+        //  ['where', 'где'], 
          ['will', 'будет'], 
-         ['can ', 'могу'], 
+         ['can', 'могу'], 
          ['so', 'так'], 
-         ['why', 'почему'],
-         ['which', 'который'], 
-         ['who', 'кто'], 
-         ['whose', 'чей'], 
+        //  ['why', 'почему'],
+        //  ['which', 'который'], 
+        //  ['who', 'кто'], 
+        //  ['whose', 'чей'], 
          ['colon', 'двоеточие'], 
          ['how', 'как']]
 
@@ -20,9 +20,17 @@ function nextWord() {
     words.splice(number, 1, splicedWord)[0] : words.splice(number, 1)[0]
   if (!splicedWord.hit) {splicedWord.hit = 0}
   if (!splicedWord.miss) {splicedWord.miss = 0}
-  word.innerText = splicedWord[ru_en]
+
+  if (!localStorage[splicedWord[0]]) {localStorage[splicedWord[0]] = "0,0"}
+  arrLs = localStorage[splicedWord[0]].split(',')
+  splicedWord.hit = arrLs[0]
+
+  if (!localStorage[splicedWord[0]]) {localStorage[splicedWord[0]] = "0,0"}
+  arrLs = localStorage[splicedWord[0]].split(',')
+  splicedWord.miss = arrLs[1]
   hitMiss.innerHTML = `<span id=hit>${splicedWord.hit}</span> :
   <span id=miss>${splicedWord.miss}</span>`
+  word.innerText = splicedWord[ru_en]
   input_form.value = ""
 }
 splicedWord = false
@@ -39,7 +47,15 @@ function inputHandler() {
   lekalo = splicedWord[1-ru_en]
 
   if (text == lekalo) {
-    splicedWord.hit = splicedWord.hit ? splicedWord.hit+1 : 1
+    // splicedWord.hit = splicedWord.hit ?splicedWord.hit+1 : 1
+
+    if (!localStorage[splicedWord[0]]) {localStorage[splicedWord[0]] = "0,0"}
+    arrLs = localStorage[splicedWord[0]].split(',')
+    splicedWord.hit = arrLs[0]
+    arrLs[0] = +arrLs[0]+1
+    console.log(arrLs)
+    localStorage[splicedWord[0]] = arrLs.join(',')
+
     document.body.style.backgroundColor = "green";  
     window.setTimeout(nextWord, [1200]);
     right.innerText = ++counter_right
@@ -49,7 +65,13 @@ function inputHandler() {
 
   }
   else {
-    splicedWord.miss = splicedWord.miss ? splicedWord.miss+1 : 1
+    // splicedWord.miss = splicedWord.miss ? splicedWord.miss+1 : 1
+    if (!localStorage[splicedWord[0]]) {localStorage[splicedWord[0]] = "0,0"}
+    arrLs = localStorage[splicedWord[0]].split(',')
+    arrLs[1] = +arrLs[1]+1
+    console.log(arrLs)
+    localStorage[splicedWord[0]] = arrLs.join(',')
+
     document.body.style.backgroundColor = "red"; 
     word.innerText = splicedWord[ru_en]+" = "+lekalo; 
     wrong.innerText = ++counter_wrong
@@ -72,4 +94,5 @@ no.onclick = function() {
   document.body.style.backgroundColor = "red"
 }
 
-// TODO запись счетчиков в LocalStorage
+// TODO запись счетчиков hit|miss в LocalStorage
+// 
